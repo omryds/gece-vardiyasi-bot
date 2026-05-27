@@ -1,0 +1,17 @@
+{
+  "name": "gece-vardiyasi-bot",
+  "version": "0.3.0",
+  "description": "D2C kozmetik müşteri hizmetleri REST API (Shopify)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["cosmetics", "api", "shopify", "chatbot"],
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}

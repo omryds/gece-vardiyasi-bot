@@ -1,0 +1,35 @@
+[
+  {
+    "id": "nem-krem-01",
+    "name": "Gece Nemlendirici Krem",
+    "keywords": ["nemlendirici", "krem", "gece krem", "nem krem"],
+    "ingredients": ["hyaluronik asit", "shea yağı", "niacinamide"],
+    "faq": {
+      "sivilce": "Formül yağsız değildir; çok yağlı veya akneye yatkın ciltlerde tıkanıklık hissi oluşturabilir. Kesin sonuç kişiden kişiye değişir; cildinize uygunluğu için küçük bir bölgede denemenizi öneririz.",
+      "kullanim": "Akşam temiz cilde, ince bir tabaka halinde uygulayın. Göz çevresinden kaçının.",
+      "koku": "Hafif, parfümsüz bir koku profiline sahiptir."
+    }
+  },
+  {
+    "id": "serum-02",
+    "name": "Gözenek Görünümü Serum",
+    "keywords": ["serum", "gözenek", "por", "sıkılaştırıcı"],
+    "ingredients": ["niasinamid", "çinko PCA", "salisilik asit (%0.5)"],
+    "faq": {
+      "sivilce": "Düşük oranlı salisilik asit içerir; bazı kullanıcılar daha mat bir his bildirir. Sivilceyi 'tedavi ettiğini' iddia etmiyoruz; düzenli kullanımda cilt dokusunun daha dengeli görünmesine yardımcı olabilir.",
+      "kullanim": "Sabah veya akşam 2–3 damla; nemlendiriciden önce uygulayın. Güneş koruyucu kullanın.",
+      "hassas": "Hassas ciltlerde hafif karıncalanma olabilir; haftada 2–3 kez başlayın."
+    }
+  },
+  {
+    "id": "jel-03",
+    "name": "Sabah Temizleyici Jel",
+    "keywords": ["jel", "temizleyici", "yüz yıkama", "sabah jel"],
+    "ingredients": ["gliserin", "panthenol", "hafif yüzey aktif maddeler"],
+    "faq": {
+      "sivilce": "Nazik temizlik için tasarlanmıştır; kurutmadan arındırmayı hedefler. Mevcut sivilceleri 'çözmek' veya hastalık tedavisi vaat etmez.",
+      "kullanim": "Islak cilde masaj yapın, ılık suyla durulayın. Günde en fazla 2 kez.",
+      "kuruluk": "Kuruluk hissederseniz kullanım sıklığını azaltın ve nemlendirici ekleyin."
+    }
+  }
+]
