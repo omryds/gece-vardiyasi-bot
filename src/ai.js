@@ -24,8 +24,9 @@ function getConfig() {
     );
   }
   
-  // .env dosyasından modeli okur, boşsa en güncel varsayılan modele geçer
-  const model = process.env.ANTHROPIC_MODEL || "claude-3-haiku-20240307";
+  // Claude 3+ için yeni Messages API kullanılır: client.messages.create({ system, messages })
+  // Model .env'den okunur; yoksa varsayılan Sonnet'e düşer.
+  const model = process.env.ANTHROPIC_MODEL || "claude-3-5-sonnet-20241022";
 
   return {
     provider: "anthropic",
