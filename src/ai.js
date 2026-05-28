@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { GoogleGenAI } = require("@google/genai"); // YENİ SDK
 const { getCatalogForAI } = require("./products");
 
 const SYSTEM_PROMPT = `Sen bir D2C kozmetik markasının müşteri hizmetleri asistanısın. Türkçe, nazik ve net konuş.
@@ -23,6 +23,7 @@ function getConfig() {
     );
   }
   
+  // Google'ın en yeni, hızlı ve kısıtlamasız modeli
   const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 
   return {
@@ -33,14 +34,20 @@ function getConfig() {
 }
 
 async function askGemini(config, question) {
-  const genAI = new GoogleGenerativeAI(config.apiKey);
-  const model = genAI.getGenerativeModel({ 
+  // Yeni GoogleGenAI kütüphanesi başlatılıyor
+  const ai = new GoogleGenAI({ apiKey: config.apiKey });
+  
+  // Yeni SDK'nın oluşturma formatı
+  const response = await ai.models.generateContent({
     model: config.model,
-    systemInstruction: SYSTEM_PROMPT 
+    contents: question,
+    config: {
+      systemInstruction: SYSTEM_PROMPT,
+      temperature: 0.2, // Halüsinasyonu önlemek için düşük değer
+    }
   });
 
-  const result = await model.generateContent(question);
-  return result.response.text().trim();
+  return response.text.trim();
 }
 
 async function generateAnswer(question) {
