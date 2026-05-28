@@ -1,6 +1,5 @@
 require("dotenv").config();
-
-const Anthropic = require("@anthropic-ai/sdk");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { getCatalogForAI } = require("./products");
 
 const SYSTEM_PROMPT = `Sen bir D2C kozmetik markasının müşteri hizmetleri asistanısın. Türkçe, nazik ve net konuş.
@@ -17,40 +16,36 @@ KURALLAR (zorunlu):
 ${getCatalogForAI()}`;
 
 function getConfig() {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey || apiKey.includes("buraya_")) {
     throw new Error(
-      "ANTHROPIC_API_KEY eksik. .env dosyanızı kontrol edin (bkz. .env.example)."
+      "GEMINI_API_KEY eksik. Lütfen Render panelindeki Environment Variables bölümüne ekleyin."
     );
   }
   
-  // Claude 3+ için yeni Messages API kullanılır: client.messages.create({ system, messages })
-  // Model .env'den okunur; yoksa varsayılan Sonnet'e düşer.
-  const model = process.env.ANTHROPIC_MODEL || "claude-3-5-sonnet-20241022";
+  const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 
   return {
-    provider: "anthropic",
+    provider: "google",
     apiKey,
     model,
   };
 }
 
-async function askAnthropic(config, question) {
-  const client = new Anthropic({ apiKey: config.apiKey });
-  const message = await client.messages.create({
+async function askGemini(config, question) {
+  const genAI = new GoogleGenerativeAI(config.apiKey);
+  const model = genAI.getGenerativeModel({ 
     model: config.model,
-    max_tokens: 1024,
-    system: SYSTEM_PROMPT,
-    messages: [{ role: "user", content: question }],
+    systemInstruction: SYSTEM_PROMPT 
   });
 
-  const block = message.content.find((b) => b.type === "text");
-  return block ? block.text.trim() : "";
+  const result = await model.generateContent(question);
+  return result.response.text().trim();
 }
 
 async function generateAnswer(question) {
   const config = getConfig();
-  return askAnthropic(config, question);
+  return askGemini(config, question);
 }
 
 function getProviderLabel() {
