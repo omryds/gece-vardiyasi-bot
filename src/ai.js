@@ -25,7 +25,7 @@ function getConfig() {
   }
   
   // .env dosyasından modeli okur, boşsa en güncel varsayılan modele geçer
-  const model = process.env.ANTHROPIC_MODEL || "claude-3-5-sonnet-latest";
+  const model = process.env.ANTHROPIC_MODEL || "claude-3-haiku-20240307";
 
   return {
     provider: "anthropic",
